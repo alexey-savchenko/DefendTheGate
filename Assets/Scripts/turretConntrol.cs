@@ -7,13 +7,22 @@ public class turretConntrol : MonoBehaviour {
 	public Transform spawnZone;
 	public GameObject shot;
 
+	Vector3 offset = Vector3.zero;
+
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
 			Instantiate (shot, spawnZone.position, spawnZone.rotation);
 		}
 
-		transform.Translate (new Vector3 (Input.GetAxis ("Horizontal") * speed * Time.deltaTime, 0, 0));
+		offset = new Vector3 (Input.GetAxis ("Horizontal") * speed * Time.deltaTime, 0, 0) + transform.position;
+		print (offset);
+		offset.x = Mathf.Clamp (
+			offset.x, 
+			Camera.main.ViewportToWorldPoint(new Vector2(0f, 0f)).x + GetComponent<Renderer>().bounds.size.x * 0.5f, 
+			Camera.main.ViewportToWorldPoint(new Vector2(1f, 0f)).x - GetComponent<Renderer>().bounds.size.x * 0.5f
+		);
 
+		transform.position = offset;
 	}
 			
 }
