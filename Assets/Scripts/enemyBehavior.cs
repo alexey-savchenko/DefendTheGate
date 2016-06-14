@@ -3,7 +3,7 @@ using System.Collections;
 
 public class enemyBehavior : MonoBehaviour{
 
-
+	public GameObject deathEffect;
 	public int healthPoints;
 	public Vector3 MoveDirection;
 
@@ -16,6 +16,8 @@ public class enemyBehavior : MonoBehaviour{
 
 		if(healthPoints == 0){
 			Destroy (this.gameObject);
+			Object _deathEffect = Instantiate (deathEffect, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+			Destroy (_deathEffect, 1.25f);
 		}
 
 	}

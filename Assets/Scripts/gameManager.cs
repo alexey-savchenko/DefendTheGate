@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class gameManager : MonoBehaviour {
-
-
+	
 	public static int gateHealth {
 		get;
 		set;
@@ -14,7 +13,6 @@ public class gameManager : MonoBehaviour {
 		get;
 		set;
 	}
-
 
 	void Start () {
 		

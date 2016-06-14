@@ -4,19 +4,13 @@ using System.Collections;
 
 public class destroyTargOnHit : MonoBehaviour {
 
-
-
 	public GameObject explosion_anim;
 	public GameObject blood_anim;
-	private Text scoreText;
 
 
-	void Awake(){
-		//scoreText = GameObject.FindGameObjectWithTag ("score").GetComponent<Text> ();
-	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.name == "tank_target(Clone)" || coll.gameObject.name == "soldier_enemy(Clone)") {
+		if (coll.gameObject.tag == "Enemy") {
 			Destroy (this.gameObject);
 
 			///DEAL DAMAGE TO ENEMY
@@ -24,22 +18,8 @@ public class destroyTargOnHit : MonoBehaviour {
 			TargetHit (target);
 			///
 
-			if (coll.gameObject.name == "tank_target(Clone)" && target.healthPoints > 0) {
-
-				if (coll.gameObject.name == "tank_target(Clone)" && target.healthPoints == 0) {
-					Object exp = Instantiate (explosion_anim, new Vector3 (coll.gameObject.transform.position.x, coll.gameObject.transform.position.y, 0), Quaternion.identity);
-					Destroy (exp, 1.25f);
-
-					UpdateScore ();
-
-				}
-
-			} else if(coll.gameObject.name == "soldier_enemy(Clone)"){
-				Object blood = Instantiate (blood_anim, new Vector3 (coll.gameObject.transform.position.x, coll.gameObject.transform.position.y, 0), Quaternion.identity);
-				Destroy (blood, 1f);
-
+			if (target.healthPoints == 0) {
 				UpdateScore ();
-
 			}
 		}
 	}
