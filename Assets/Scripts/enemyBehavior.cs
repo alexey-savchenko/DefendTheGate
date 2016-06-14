@@ -7,7 +7,6 @@ public class enemyBehavior : MonoBehaviour{
 	public int healthPoints;
 	public Vector3 MoveDirection;
 
-
 	// Update is called once per frame
 	void Update () {
 
@@ -25,10 +24,14 @@ public class enemyBehavior : MonoBehaviour{
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.name == "danger_zone")
 		{
-			gameManager.gateHealth--;
+			damageGate();
 			Destroy(this.gameObject);
 		}
 	}
 
+	void damageGate(){
+		gameManager.gateHealth--;
+
+	}
 
 }
