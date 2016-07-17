@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿
+
+using UnityEngine;
 using System.Collections;
 
 public class turretConntrol : MonoBehaviour {
@@ -6,12 +8,14 @@ public class turretConntrol : MonoBehaviour {
 	public int speed;
 	public Transform spawnZone;
 	public GameObject shot;
+	public ParticleSystem shootingPointEmitter; 
 
 	Vector3 offset = Vector3.zero;
 
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
 			Instantiate (shot, spawnZone.position, spawnZone.rotation);
+			shootingPointEmitter.Emit (10);
 		}
 
 		offset = new Vector3 (Input.GetAxis ("Horizontal") * speed * Time.deltaTime, 0, 0) + transform.position;

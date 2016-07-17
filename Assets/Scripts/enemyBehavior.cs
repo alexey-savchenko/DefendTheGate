@@ -3,15 +3,20 @@ using System.Collections;
 
 public class enemyBehavior : MonoBehaviour{
 
+	public float damageAmount;
 	public GameObject deathEffect;
 	public int healthPoints;
-	public Vector3 MoveDirection;
+	public float speed;
+
+	GameObject GM;
+	gameManager _gameManager;
+
 
 	// Update is called once per frame
 	void Update () {
 
 		// Movement
-		gameObject.transform.Translate (-MoveDirection);
+		gameObject.transform.Translate (Vector3.down * Time.deltaTime * speed);
 
 		if(healthPoints == 0){
 			Destroy (this.gameObject);
@@ -21,16 +26,25 @@ public class enemyBehavior : MonoBehaviour{
 
 	}
 
-	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.name == "danger_zone")
+	void Awake(){
+		GM = GameObject.FindGameObjectWithTag ("GameController");
+		_gameManager = GM.GetComponent<gameManager> ();
+
+
+	}
+
+	void OnTriggerEnter2D(Collider2D coll) {
+		if (coll.tag == "deathZone")
 		{
-			damageGate();
+			damageGate(damageAmount);
 			Destroy(this.gameObject);
 		}
 	}
 
-	void damageGate(){
-		gameManager.gateHealth--;
+	void damageGate(float amount){
+
+		_gameManager.damageGate (amount);
+		print (gameManager.gateHealth);
 
 	}
 

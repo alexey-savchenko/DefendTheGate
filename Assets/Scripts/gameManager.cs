@@ -3,8 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class gameManager : MonoBehaviour {
-	
-	public static int gateHealth {
+
+	public Slider healthBar;
+
+	public static bool isPaused = false;
+
+	public static float gateHealth {
 		get;
 		set;
 	}
@@ -15,16 +19,26 @@ public class gameManager : MonoBehaviour {
 	}
 
 	void Start () {
-		
+		gateHealth = 1;
+		healthBar.value = gateHealth;
+
 		scoreCount = 0;
-		gateHealth = 3;
+
 
 	}
 
 	void Update(){
-		if (gateHealth == 0) {
+		if (gateHealth < 0) {
 			GameOver ();
 		}
+	}
+
+	public void damageGate(float amount){
+
+		gateHealth -= amount;
+		healthBar.value = gateHealth;
+
+
 	}
 
 	void GameOver(){
