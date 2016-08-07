@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -7,8 +9,17 @@ public class ButtonBehavior : MonoBehaviour {
 	public GameObject pauseText;
 	public GameObject mainMenuBtn;
 
-	public void loadFirstLevel(){
-		SceneManager.LoadScene ("1");
+
+
+	public void loadLevel(){
+		
+		Text levelSelected = gameObject.GetComponentInChildren<Text> ();
+
+		try{
+		SceneManager.LoadScene (levelSelected.text.ToString ());
+		} catch {
+			print (levelSelected.text);
+		}
 	}
 
 	public void exitApp(){
@@ -31,6 +42,6 @@ public class ButtonBehavior : MonoBehaviour {
 
 	public void returnToMainMenu(){
 		Time.timeScale = 1;
-		SceneManager.LoadScene ("startupScene");
+		SceneManager.LoadScene ("Startup Scene");
 	}
 }
