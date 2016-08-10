@@ -16,7 +16,7 @@ public class enemyBehavior : MonoBehaviour{
 	void Update () {
 
 		// Movement
-		gameObject.transform.Translate (Vector3.down * speed);
+		gameObject.transform.Translate (Vector3.down * speed * Time.fixedDeltaTime);
 
 		if(healthPoints == 0){
 			Destroy (this.gameObject);
