@@ -5,6 +5,7 @@ using System.Collections;
 public class gameManager : MonoBehaviour {
 
 	public Slider healthBar;
+	public GameObject GameOverWrap;
 
 	public static bool isPaused = false;
 
@@ -30,6 +31,8 @@ public class gameManager : MonoBehaviour {
 	void Update(){
 		if (gateHealth < 0) {
 			GameOver ();
+			GameOverWrap.SetActive (true);
+
 		}
 	}
 
@@ -42,6 +45,6 @@ public class gameManager : MonoBehaviour {
 	}
 
 	void GameOver(){
-		GameObject.Find ("spawnManager").SetActive(false);
+		GameObject.Find ("Script - SpawnManager").SetActive(false);
 	}
 }

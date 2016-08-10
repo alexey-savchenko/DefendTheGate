@@ -29,7 +29,7 @@ public class destroyTargOnHit : MonoBehaviour {
 	}
 
 	void UpdateScore(){
-		Text scoreText = GameObject.Find("score").GetComponent<Text>();
+		Text scoreText = GameObject.Find("Score - Text").GetComponent<Text>();
 		gameManager.scoreCount++;
 		scoreText.text = "Body count: " + gameManager.scoreCount;
 	}

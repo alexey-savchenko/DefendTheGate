@@ -22,11 +22,16 @@ public class ButtonBehavior : MonoBehaviour {
 		}
 	}
 
+	public void levelReset(){
+		SceneManager.LoadScene (Application.loadedLevel);
+	}
+
 	public void exitApp(){
 		Application.Quit ();
 	}
 		
 	public void pause(){
+		
 		if (gameManager.isPaused != true) {
 			gameManager.isPaused = true;
 			Time.timeScale = 0;
