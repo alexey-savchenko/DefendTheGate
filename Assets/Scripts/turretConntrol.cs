@@ -17,11 +17,11 @@ public class turretConntrol : MonoBehaviour {
 	Vector3 offset = Vector3.zero;
 
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
-			fire ();
-//			Instantiate (shot, shootingPoint.position, shootingPoint.rotation);
-//			shootingPointEmitter.Emit (10);
-		}
+//		if (Input.GetMouseButtonDown (0)) {
+//			fire ();
+////			Instantiate (shot, shootingPoint.position, shootingPoint.rotation);
+////			shootingPointEmitter.Emit (10);
+//		}
 
 		offset = new Vector3 (Input.GetAxis ("Horizontal") * speed * Time.deltaTime, 0, 0) + transform.position;
 
