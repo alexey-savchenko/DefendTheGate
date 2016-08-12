@@ -1,12 +1,16 @@
 ﻿
 
+using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
 
 public class turretConntrol : MonoBehaviour {
 
+
+
+
 	public int speed;
-	public Transform spawnZone;
+	public Transform shootingPoint;
 	public GameObject shot;
 	public ParticleSystem shootingPointEmitter; 
 
@@ -14,8 +18,9 @@ public class turretConntrol : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
-			Instantiate (shot, spawnZone.position, spawnZone.rotation);
-			shootingPointEmitter.Emit (10);
+			fire ();
+//			Instantiate (shot, shootingPoint.position, shootingPoint.rotation);
+//			shootingPointEmitter.Emit (10);
 		}
 
 		offset = new Vector3 (Input.GetAxis ("Horizontal") * speed * Time.deltaTime, 0, 0) + transform.position;
@@ -27,6 +32,11 @@ public class turretConntrol : MonoBehaviour {
 		);
 
 		transform.position = offset;
+	}
+
+	public void fire(){
+		Instantiate (shot, shootingPoint.position, shootingPoint.rotation);
+		shootingPointEmitter.Emit (10);
 	}
 			
 }

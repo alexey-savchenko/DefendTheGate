@@ -44,7 +44,7 @@ public class enemyBehavior : MonoBehaviour{
 	void damageGate(float amount){
 
 		_gameManager.damageGate (amount);
-		print (gameManager.gateHealth);
+		//print (gameManager.gateHealth);
 
 	}
 
