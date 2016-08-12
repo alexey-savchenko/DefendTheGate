@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class ButtonBehavior : HoldButton, IPointerDownHandler, IPointerExitHandler {
+public class ButtonBehavior : HoldButton{
 
 	public GameObject pauseText;
 	public GameObject mainMenuBtn;
@@ -59,23 +59,16 @@ public class ButtonBehavior : HoldButton, IPointerDownHandler, IPointerExitHandl
 		i.fire ();
 	}
 
-	void OnPointerDown(PointerEventData eventData){
-		if (gameObject.name == "Move left - Button ") {
-			Rigidbody2D player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> ();
-			player.AddForce (new Vector2 (-1 * Time.deltaTime * 100, 0));
-		} else if (gameObject.name == "Move right - Button ") {
-			Rigidbody2D player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> ();
-			player.AddForce (Vector2.right * Time.deltaTime);
-		}
-	}
-
 	public void moveLeft(){
-		
+		GameObject player = GameObject.FindGameObjectWithTag ("Player");
+		Vector3 shift = new Vector3 (-1 * Time.deltaTime * 5, 0 ,0 ) + player.transform.position;
+
+		player.transform.position = shift;
 	}
 		
 	public void moveRight(){
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
-		Vector3 shift = new Vector3 (1 * Time.deltaTime * 9, 0 ,0 ) + player.transform.position;
+		Vector3 shift = new Vector3 (1 * Time.deltaTime * 5, 0 ,0 ) + player.transform.position;
 
 		player.transform.position = shift;
 	}

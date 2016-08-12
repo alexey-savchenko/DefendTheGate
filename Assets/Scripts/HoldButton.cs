@@ -4,29 +4,27 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class HoldButton: Button, IPointerDownHandler, IPointerExitHandler
+public class HoldButton: MonoBehaviour, IPointerDownHandler, IPointerExitHandler
 {
-	protected bool isHeld = false;
-
-	void OnPointerDown(PointerEventData eventData){
-
+	public UnityEvent OnHeld;
+	public UnityEvent OnClick;
 
 
+	bool isHeld = false;
 
-//		isHeld = true;
-//		if (gameObject.name == "Move left - Button ") {
-//			Rigidbody2D player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> ();
-//			player.AddForce (new Vector2 (-1 * Time.deltaTime * 100, 0));
-//		} else if (gameObject.name == "Move right - Button ") {
-//			Rigidbody2D player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> ();
-//			player.AddForce (Vector2.right * Time.deltaTime);
-//		}
+	void Update () {
+		if (isHeld)
+			OnHeld.Invoke ();
 	}
-//
-//	void OnPointerExit (PointerEventData eventData){
-//		
-//	}
+
+	public void OnPointerDown(PointerEventData eventData){
+		isHeld = true;
+		OnClick.Invoke ();
+	}
+
+	public void OnPointerExit (PointerEventData eventData){
+		isHeld = false;
+	}
 
 
 }
-
