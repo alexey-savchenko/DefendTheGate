@@ -1,13 +1,41 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class projectileBehavior : MonoBehaviour {
+public class ProjectileBehavior : MonoBehaviour {
 	
 	public float projectileSpeed;
+//	public GameObject explosion_anim;
+//	public GameObject blood_anim;
 
 	void Update () {
-		transform.Translate (0,1 * projectileSpeed * Time.deltaTime,0);
+		transform.Translate (0,projectileSpeed * Time.deltaTime,0);
 		Destroy(this.gameObject, 5);
 	}
 
+	void OnTriggerEnter2D(Collider2D coll) {
+		if (coll.gameObject.tag == "Enemy") {
+			Destroy (this.gameObject);
+
+			///DEAL DAMAGE TO ENEMY
+			EnemyBehavior target = coll.gameObject.GetComponent<EnemyBehavior> ();
+			TargetHit (target);
+			///
+
+			if (target.healthPoints == 0) {
+				UpdateScore ();
+			}
+		}
+	}
+
+	void TargetHit(EnemyBehavior target){
+		target.healthPoints--;
+
+	}
+
+	void UpdateScore(){
+		Text scoreText = GameObject.Find("Score - Text").GetComponent<Text>();
+		GameManager.scoreCount++;
+		scoreText.text = "Body count: " + GameManager.scoreCount;
+	}
 }

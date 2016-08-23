@@ -1,27 +1,25 @@
-﻿
-
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
 
-public class turretConntrol : MonoBehaviour {
+public class TurretControl : MonoBehaviour {
 
-
-
-
+	public float playerHealth;
 	public int speed;
 	public Transform shootingPoint;
 	public GameObject shot;
 	public ParticleSystem shootingPointEmitter; 
+	public Slider playerHealthBar;
+
 
 	Vector3 offset = Vector3.zero;
 
+	void Start(){
+		playerHealth = 10;
+		playerHealthBar.value = playerHealth;
+	}
+
 	void Update () {
-//		if (Input.GetMouseButtonDown (0)) {
-//			fire ();
-////			Instantiate (shot, shootingPoint.position, shootingPoint.rotation);
-////			shootingPointEmitter.Emit (10);
-//		}
 
 		offset = new Vector3 (Input.GetAxis ("Horizontal") * speed * Time.deltaTime, 0, 0) + transform.position;
 
@@ -32,6 +30,15 @@ public class turretConntrol : MonoBehaviour {
 		);
 
 		transform.position = offset;
+
+
+		if (playerHealth < 0){
+			GameManager _gameManager = GameObject.Find ("Script - GameManager").GetComponent<GameManager>();
+			_gameManager.GameOver ();
+		}
+
+		playerHealthBar.value = playerHealth;
+
 	}
 
 	public void fire(){

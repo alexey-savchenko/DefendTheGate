@@ -2,10 +2,19 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class gameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
-	public Slider healthBar;
+	public Slider gateHealthBar;
+
+	public float timeOffset;
+	public GameObject[] targets;
+	public float y_spawnOffset;
+	public bool gameOver;
+	private Vector3 spawnPos;
 	public GameObject GameOverWrap;
+
+
+
 
 	public static bool isPaused = false;
 
@@ -21,30 +30,38 @@ public class gameManager : MonoBehaviour {
 
 	void Start () {
 		gateHealth = 1;
-		healthBar.value = gateHealth;
-
+		gateHealthBar.value = gateHealth;
 		scoreCount = 0;
-
-
 	}
 
 	void Update(){
+
 		if (gateHealth < 0) {
 			GameOver ();
-			GameOverWrap.SetActive (true);
-
 		}
+
+		//SPAWN ENEMIES
+		if (!gameOver){
+			timeOffset -= Time.deltaTime;
+			if (timeOffset < 0.1f) {
+				Instantiate (targets[Random.Range(0, targets.Length)], new Vector3 (Random.Range(-3.8f, 3.8f), y_spawnOffset, 0), Quaternion.identity);
+				timeOffset = Random.Range(1, 3);
+			}
+		}
+		//END OF SPAWN
+
 	}
 
 	public void damageGate(float amount){
-
 		gateHealth -= amount;
-		healthBar.value = gateHealth;
-
-
+		gateHealthBar.value = gateHealth;
 	}
 
-	void GameOver(){
-		GameObject.Find ("Script - SpawnManager").SetActive(false);
+	public void GameOver(){
+
+		gameOver = true;
+
+		//GameObject GameOverWrap = GameObject.Find ("Game Over UI wrapper");
+		GameOverWrap.SetActive (true);
 	}
 }

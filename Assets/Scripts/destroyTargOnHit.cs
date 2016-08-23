@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class destroyTargOnHit : MonoBehaviour {
+public class DestroyTargOnHit : MonoBehaviour {
 
 	public GameObject explosion_anim;
 	public GameObject blood_anim;
@@ -14,7 +14,7 @@ public class destroyTargOnHit : MonoBehaviour {
 			Destroy (this.gameObject);
 
 			///DEAL DAMAGE TO ENEMY
-			enemyBehavior target = coll.gameObject.GetComponent<enemyBehavior> ();
+			EnemyBehavior target = coll.gameObject.GetComponent<EnemyBehavior> ();
 			TargetHit (target);
 			///
 
@@ -24,13 +24,13 @@ public class destroyTargOnHit : MonoBehaviour {
 		}
 	}
 
-	void TargetHit(enemyBehavior target){
+	void TargetHit(EnemyBehavior target){
 		target.healthPoints--;
 	}
 
 	void UpdateScore(){
 		Text scoreText = GameObject.Find("Score - Text").GetComponent<Text>();
-		gameManager.scoreCount++;
-		scoreText.text = "Body count: " + gameManager.scoreCount;
+		GameManager.scoreCount++;
+		scoreText.text = "Body count: " + GameManager.scoreCount;
 	}
 }

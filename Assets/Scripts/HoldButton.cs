@@ -7,8 +7,6 @@ using UnityEngine.EventSystems;
 public class HoldButton: MonoBehaviour, IPointerDownHandler, IPointerExitHandler
 {
 	public UnityEvent OnHeld;
-	public UnityEvent OnClick;
-
 
 	bool isHeld = false;
 
@@ -19,7 +17,7 @@ public class HoldButton: MonoBehaviour, IPointerDownHandler, IPointerExitHandler
 
 	public void OnPointerDown(PointerEventData eventData){
 		isHeld = true;
-		OnClick.Invoke ();
+
 	}
 
 	public void OnPointerExit (PointerEventData eventData){

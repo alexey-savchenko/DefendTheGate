@@ -17,7 +17,7 @@ public class ButtonBehavior : HoldButton{
 		
 		Text levelSelected = gameObject.GetComponentInChildren<Text> ();
 
-		try{
+		try {
 		SceneManager.LoadScene (levelSelected.text.ToString ());
 		} catch {
 			print (levelSelected.text);
@@ -34,13 +34,13 @@ public class ButtonBehavior : HoldButton{
 		
 	public void pause(){
 		
-		if (gameManager.isPaused != true) {
-			gameManager.isPaused = true;
+		if (GameManager.isPaused != true) {
+			GameManager.isPaused = true;
 			Time.timeScale = 0;
 			pauseText.SetActive (true);
 			mainMenuBtn.SetActive (true);
 		} else {
-			gameManager.isPaused = false;
+			GameManager.isPaused = false;
 			Time.timeScale = 1;
 			pauseText.SetActive (false);
 			mainMenuBtn.SetActive (false);
@@ -55,21 +55,19 @@ public class ButtonBehavior : HoldButton{
 	// touch input 
 
 	public void fire(){
-		turretConntrol i = GameObject.FindGameObjectWithTag ("Player").GetComponent<turretConntrol> ();
+		TurretControl i = GameObject.FindGameObjectWithTag ("Player").GetComponent<TurretControl> ();
 		i.fire ();
 	}
 
 	public void moveLeft(){
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
-		Vector3 shift = new Vector3 (-1 * Time.deltaTime * 5, 0 ,0 ) + player.transform.position;
-
+		Vector3 shift = new Vector3 (-1 * Time.deltaTime * 7, 0 ,0 ) + player.transform.position;
 		player.transform.position = shift;
 	}
 		
 	public void moveRight(){
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
-		Vector3 shift = new Vector3 (1 * Time.deltaTime * 5, 0 ,0 ) + player.transform.position;
-
+		Vector3 shift = new Vector3 (1 * Time.deltaTime * 7, 0 ,0 ) + player.transform.position;
 		player.transform.position = shift;
 	}
 
