@@ -1,2 +1,2 @@
-# DefendTheGate
-Unity3d game
+# Defend The Gates  
+Unity3d arcade shooter
