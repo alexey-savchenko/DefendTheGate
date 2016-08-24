@@ -13,6 +13,17 @@ public class TurretControl : MonoBehaviour {
 
 
 	Vector3 offset = Vector3.zero;
+    Animator turretAnimator;
+
+    void Awake ()
+    {
+        CacheComponents();
+    }
+
+    void CacheComponents ()
+    {
+        turretAnimator = GetComponent<Animator>();
+    }
 
 	void Start(){
 		playerHealth = 10;
@@ -44,6 +55,8 @@ public class TurretControl : MonoBehaviour {
 	public void fire(){
 		Instantiate (shot, shootingPoint.position, shootingPoint.rotation);
 		shootingPointEmitter.Emit (10);
-	}
+        turretAnimator.SetTrigger("Fire");
+
+    }
 			
 }
