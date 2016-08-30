@@ -10,7 +10,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -32,7 +32,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -49,11 +49,19 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: blood_sheet_0
+    - serializedVersion: 2
+      name: blood_sheet_0
       rect:
         serializedVersion: 2
         x: 6
@@ -64,7 +72,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: blood_sheet_1
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: blood_sheet_1
       rect:
         serializedVersion: 2
         x: 28
@@ -75,7 +85,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: blood_sheet_2
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: blood_sheet_2
       rect:
         serializedVersion: 2
         x: 62
@@ -85,14 +97,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 13, y: 16}
-        - {x: -16, y: 16}
-        - {x: -16, y: -15}
-        - {x: -14, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 12}
-        - {x: 15, y: 15}
+      outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 
